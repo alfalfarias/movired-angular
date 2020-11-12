@@ -11,8 +11,6 @@ import { TransactionModule } from './components/transaction/transaction.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MaterialModule } from './shared/material.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent

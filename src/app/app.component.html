@@ -10,42 +10,45 @@
 
 <h2 class="text-center">Evaluación Angular</h2>
 
-<h3>Filtros de búsqueda</h3>
-<form [formGroup]="formGroup">
-	<mat-form-field>
-		<mat-label>Tipo de servicio</mat-label>
-		<mat-select matNativeControl (selectionChange)="onChangeType($event)" formControlName="serviceType">
-			<mat-option *ngIf="types.length === 0" value="" disabled>-NO HAY TIPOS DISPONIBLES-</mat-option>
-			<mat-option *ngFor="let type of types" [value]="type.code">
-				{{type.name}}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
+<div class="container">
+	<h3>Filtros de búsqueda</h3>
+	<form [formGroup]="formGroup" class="flex-container space-between">
+		<mat-form-field class="flex-item">
+			<mat-label>Tipo de servicio</mat-label>
+			<mat-select matNativeControl (selectionChange)="onChangeType($event)" formControlName="serviceType">
+				<mat-option *ngIf="types.length === 0" value="" disabled>-NO HAY TIPOS DISPONIBLES-</mat-option>
+				<mat-option *ngFor="let type of types" [value]="type.code">
+					{{type.name}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
 
-	<mat-form-field>
-		<mat-label>Fecha inicial</mat-label>
-		<input matInput [matDatepicker]="startDatePicker" (dateChange)="getAll()" formControlName="startDate">
-		<mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-		<mat-datepicker #startDatePicker [dateClass]="dateClass"></mat-datepicker>
-		<mat-hint>Selecciona una fecha inicial</mat-hint>
-	</mat-form-field>
+		<mat-form-field class="flex-item">
+			<mat-label>Fecha inicial</mat-label>
+			<input matInput [matDatepicker]="startDatePicker" (dateChange)="getAll()" formControlName="startDate">
+			<mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+			<mat-datepicker #startDatePicker [dateClass]="dateClass"></mat-datepicker>
+			<mat-hint>Selecciona una fecha inicial</mat-hint>
+		</mat-form-field>
 
-	<mat-form-field>
-		<mat-label>Fecha final</mat-label>
-		<input matInput [matDatepicker]="endDatePicker" (dateChange)="getAll()" formControlName="startDate">
-		<mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-		<mat-datepicker #endDatePicker></mat-datepicker>
-		<mat-hint>Selecciona una fecha final</mat-hint>
-	</mat-form-field>
-</form>
+		<mat-form-field class="flex-item">
+			<mat-label>Fecha final</mat-label>
+			<input matInput [matDatepicker]="endDatePicker" (dateChange)="getAll()" formControlName="endDate">
+			<mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+			<mat-datepicker #endDatePicker></mat-datepicker>
+			<mat-hint>Selecciona una fecha final</mat-hint>
+		</mat-form-field>
+	</form>
 
-<h3>Resultados</h3>
-<div *ngFor="let transaction of transactions">
-	<app-transaction [transaction]="transaction"></app-transaction>
-	<br>
+	<mat-divider></mat-divider>
+
+	<h3>Resultados</h3>
+	<div class="flex-container space-between">
+		<app-transaction *ngFor="let transaction of transactions" [transaction]="transaction" class="flex-item color-tomato"></app-transaction>
+	</div>
+	<div *ngIf="transactions.length === 0">
+		<h2>No hay resultados</h2>
+	</div>
+
+	<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onChangePagination($event)"></mat-paginator>
 </div>
-<div *ngIf="transactions.length === 0">
-	<h2>No hay resultados</h2>
-</div>
-
-<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onChangePagination($event)"></mat-paginator>
