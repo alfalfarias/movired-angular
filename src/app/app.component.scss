@@ -1,0 +1,23 @@
+.header {
+	top: 0;
+	height: 40px;
+	color: white;
+	left: 0;
+	padding: 0 10px 0 10px;
+	// position: fixed;
+	right: 0;
+	// z-index: 10;
+}
+
+.logo {
+	max-width: 120px;
+    margin-right: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.text-center {
+	text-align: center;
+}

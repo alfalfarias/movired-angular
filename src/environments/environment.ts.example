@@ -5,7 +5,7 @@
 export const environment = {
 	production: false,
 	api: {
-		key: 'qI+QBPyZk3B1bMQMGXbo+A==:7+Iczb1Cf3YheIXyHb9o3Q==',
+		key: '8oKBHLWVGkLnGFECA48W0w==:gUvZG7WzVFcEDzWAtz1zWA==',
 		url: 'http://150.136.189.247:55050',
 	}
 };

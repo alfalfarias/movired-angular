@@ -13,6 +13,6 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
 
   getAll({data}: any = {}): Observable<any> {
-	return this.http.post<any>(this.url+'/ws_MOV_TRANSACCIONS/transactions', data);
+	return this.http.post<any>(this.url+'/ws_MOV_TRANSACCIONS/transactions/', data);
   }
 }

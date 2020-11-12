@@ -1,0 +1,29 @@
+<mat-card class="card">
+	<mat-card-header>
+		<div mat-card-avatar class="header-image"></div>
+		<mat-card-title>{{transaction.name | uppercase}}</mat-card-title>
+		<mat-card-subtitle>{{transaction.transactionDate}}</mat-card-subtitle>
+	</mat-card-header>
+	<!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+	<mat-card-content>
+		<span>
+			<strong>Tipo de servicio:</strong> {{transaction.serviceType}}
+		</span>
+		<br>
+		<span>
+			<strong>Detalle:</strong> {{transaction.nameDetail}}
+		</span>
+		<br>
+		<span>
+			<strong>Número de referencia:</strong> {{transaction.referenceNumber}}
+		</span>
+		<br>
+		<span>
+			<strong>Monto de transferencia:</strong> {{transaction.transferValue | currency}}
+		</span>
+	</mat-card-content>
+	<mat-card-actions>
+		<button *ngIf="transaction.transferStatus == 'EXITOSA'"mat-raised-button color="primary">{{transaction.transferStatus}}</button>
+		<button *ngIf="transaction.transferStatus == 'RECHAZADA'"mat-raised-button color="warn">{{transaction.transferStatus}}</button>
+	</mat-card-actions>
+</mat-card>

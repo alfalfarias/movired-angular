@@ -1,1 +1,51 @@
-<h1>Hola mundo</h1>
+<mat-toolbar color="primary" class="header mat-elevation-z5">
+	<button mat-button>
+		<img src="/assets/logo.png" class="logo">
+	</button>
+	<span class="spacer"></span>
+	<button mat-button>
+		<span>Simón Farias</span>
+	</button>
+</mat-toolbar>
+
+<h2 class="text-center">Evaluación Angular</h2>
+
+<h3>Filtros de búsqueda</h3>
+<form [formGroup]="formGroup">
+	<mat-form-field>
+		<mat-label>Tipo de servicio</mat-label>
+		<mat-select matNativeControl (selectionChange)="onChangeType($event)" formControlName="serviceType">
+			<mat-option *ngIf="types.length === 0" value="" disabled>-NO HAY TIPOS DISPONIBLES-</mat-option>
+			<mat-option *ngFor="let type of types" [value]="type.code">
+				{{type.name}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Fecha inicial</mat-label>
+		<input matInput [matDatepicker]="startDatePicker" (dateChange)="getAll()" formControlName="startDate">
+		<mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+		<mat-datepicker #startDatePicker [dateClass]="dateClass"></mat-datepicker>
+		<mat-hint>Selecciona una fecha inicial</mat-hint>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Fecha final</mat-label>
+		<input matInput [matDatepicker]="endDatePicker" (dateChange)="getAll()" formControlName="startDate">
+		<mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+		<mat-datepicker #endDatePicker></mat-datepicker>
+		<mat-hint>Selecciona una fecha final</mat-hint>
+	</mat-form-field>
+</form>
+
+<h3>Resultados</h3>
+<div *ngFor="let transaction of transactions">
+	<app-transaction [transaction]="transaction"></app-transaction>
+	<br>
+</div>
+<div *ngIf="transactions.length === 0">
+	<h2>No hay resultados</h2>
+</div>
+
+<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onChangePagination($event)"></mat-paginator>
