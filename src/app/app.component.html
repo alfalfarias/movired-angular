@@ -15,7 +15,7 @@
 	<form [formGroup]="formGroup" class="flex-container space-between">
 		<mat-form-field class="flex-item">
 			<mat-label>Tipo de servicio</mat-label>
-			<mat-select matNativeControl (selectionChange)="onChangeType($event)" formControlName="serviceType">
+			<mat-select matNativeControl (selectionChange)="getAll()" formControlName="serviceType">
 				<mat-option *ngIf="types.length === 0" value="" disabled>-NO HAY TIPOS DISPONIBLES-</mat-option>
 				<mat-option *ngFor="let type of types" [value]="type.code">
 					{{type.name}}
@@ -43,7 +43,7 @@
 	<mat-divider></mat-divider>
 
 	<h3>Resultados</h3>
-	<div class="flex-container space-between">
+	<div class="flex-container">
 		<app-transaction *ngFor="let transaction of transactions" [transaction]="transaction" class="flex-item color-tomato"></app-transaction>
 	</div>
 	<div *ngIf="transactions.length === 0">
